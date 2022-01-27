@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="pin-generator half-width">
+                    <input value="" class="form-control" id="generate" type="text">
+                    <button id="generateBtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="input-section half-width half-width_2">
+                    <form action="" name="calculatorForm">
+                        <input id="Calculaterscreen" class="form-control screen" name ="screen" type="text">
+                        <div class="numbers">
+                            <div class="calc-body">
+                                <div class="calc-button-row" class="buttons">
+                                    <input class="button" type="button" class="buttonPer" name="num7" value="7" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num8" value="8" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num9" value="9" onclick="valueButton(this)">
+    
+                                </div>
+                                <div class="calc-button-row">
+                                    <input class="button" type="button" class="buttonPer" name="num4" value="4" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num5" value="5" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num6" value="6" onclick="valueButton(this)">
+                                </div>
+                                <div class="calc-button-row">
+                                    <input class="button" type="button" class="buttonPer" name="num1" value="1" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num2" value="2" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="num3" value="3" onclick="valueButton(this)">
+                                </div>
+                                <div class="calc-button-row">
+                                    <input class="button" type="button" class="buttonPer" name="num&lt" value="&lt;" onclick="Calculate()">
+                                    <input class="button" type="button" class="buttonPer" name="num0" value="0" onclick="valueButton(this)">
+                                    <input class="button" type="button" class="buttonPer" name="clear" value="C"onclick="Clear()">
+    
+                                </div>
+                                <div>
+                                    <span type="submit" id="submit-btn" class="submit-btn">Submit</span>
+                                    <p class="action-left">3 try left</p>
+                                </div>
+                        </div>
+                    </div>
+                    </form>
+
+               </div>
+            </div>
+        <div class="notify-section">
+            <p id="notifyMain1" class="notify1">❌ Pin Didn't Match, Please try again</p>
+            <p id="notifyMain2" class="notify2">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function valueButton(e){
+            calculatorForm.screen.value += e.value;
+            
+        }
+        var CalculateForMain = valueButton;
+
+        function Clear(){
+            calculatorForm.screen.value = "";
+        }
+//------------------------------------------------------------------------------------------------------------//
+
+    document.getElementById('generateBtn').addEventListener('click',function(){
+
+        const number = 1000;
+        // const caseCount = parseFloat(generate.value)
+        const randomCount = Math.random() * 10000;
+        const randomCountFloor = Math.ceil(randomCount)
+        generate.value = randomCountFloor;
+    })
+//------------------------------------------------------------------------------------------------------------//
+
+        document.getElementById('submit-btn').addEventListener('click', function(){
+
+        var firstNum = calculatorForm.screen;
+        var lastNum = generate;
+
+
+            if(firstNum.value > 0 && firstNum.value == lastNum.value){
+                    document.getElementById('notifyMain2').style.display = "block";
+                }
+            else{
+                document.getElementById('notifyMain1').style.display = "block";
+            }
+            })
+
+
+    
+    </script>
+
+
+</body>
+</html>
